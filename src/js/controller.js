@@ -15,11 +15,24 @@ const timeout = function (s) {
 const showRecipe=async function () {
   try {
     const res=await fetch(
-      'https://forkify-api.jonas.io/api/v2/recipes/5ed6604591c37cdc054bc886zzzz'
+      'https://forkify-api.jonas.io/api/v2/recipes/5ed6604591c37cdc054bc886'
     )
     const data = await res.json()
     console.log(data, res);
     if(!res.ok) throw new Error(`${data.message}:  ( ${res.url} )`);
+
+    let{recipe}=data.data;
+    recipe={
+      id: recipe.id,
+      title: recipe.title,
+      publisher: recipe.publisher,
+      sourceUrl: recipe.source_url,
+      image: recipe.image_url,
+      servings: recipe.servings,
+      cookingTime: recipe.cookingTime,
+      ingredients: recipe.ingredients,
+    }
+    console.log(recipe);
   }
   catch (err) {
     alert(err)
