@@ -16,7 +16,7 @@ const showRecipe=async function () {
   try {
     //loading recipe
     const res=await fetch(
-      'https://forkify-api.jonas.io/api/v2/recipes/664c8f193e7aa067e94e8673'
+      'https://forkify-api.jonas.io/api/v2/recipes/664c8f193e7aa067e94e8823'
     )
     const data = await res.json()
     console.log(data.data)
@@ -30,7 +30,7 @@ const showRecipe=async function () {
       sourceUrl: recipe.source_url,
       image: recipe.image_url,
       servings: recipe.servings,
-      cookingTime: recipe.cookingTime,
+      cookingTime: recipe.cooking_time,
       ingredients: recipe.ingredients,
     }
     //Rendering recipe
