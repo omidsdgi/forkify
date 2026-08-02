@@ -1,4 +1,6 @@
+import * as model from './model.js';
 // import icons from '../img/icons.svg' // Parcel 1
+
 import icons from 'url:../img/icons.svg';
 import 'core-js/stable'
 import 'regenerator-runtime/runtime'
@@ -31,30 +33,18 @@ const renderSpinner=function(parentEl){
 
 const showRecipe=async function () {
   try {
-    const id= window.location.hash.slice(1);
-    if (!id) return;
-    //loading recipe
-    renderSpinner(recipeContainer);
-    const res=await fetch(
-      `https://forkify-api.jonas.io/api/v2/recipes/${id}`
-    )
-    const data = await res.json()
-    console.log(data.data)
-    if(!res.ok) throw new Error(`${data.message}:  ( ${res.url} )`);
+    const id = window.location.hash.slice(1);
+    console.log(id);
 
-    let{recipe}=data.data;
-    recipe={
-      id: recipe.id,
-      title: recipe.title,
-      publisher: recipe.publisher,
-      sourceUrl: recipe.source_url,
-      image: recipe.image_url,
-      servings: recipe.servings,
-      cookingTime: recipe.cooking_time,
-      ingredients: recipe.ingredients,
-    }
-    //Rendering recipe
-    const markup=`
+    if (!id) return;
+    renderSpinner(recipeContainer);
+
+    //loading recipe
+    await model.loadRecipe(id)
+    const{recipe}=model.state
+
+  //Rendering recipe
+  const markup=`
     <figure class="recipe__fig">
           <img  class="recipe__img" src=${recipe.image} alt=${recipe.title} />
           <h1 class="recipe__title">
@@ -107,7 +97,7 @@ const showRecipe=async function () {
           <h2 class="heading--2">Recipe ingredients</h2>
           <ul class="recipe__ingredient-list">
           ${recipe.ingredients.map(ing => {
-          return `
+    return `
             <li class="recipe__ingredient">
               <svg class="recipe__icon">
                 <use href="${icons}#icon-check"></use>
@@ -119,7 +109,7 @@ const showRecipe=async function () {
               </div>
             </li>
           `
-          }).join('')}       
+  }).join('')}       
           </ul>
         </div>
 
@@ -142,11 +132,11 @@ const showRecipe=async function () {
           </a>
         </div>
     `
-    recipeContainer.insertAdjacentHTML('afterbegin',markup)
-  }
-  catch (err) {
-    alert(err)
-  }
+  recipeContainer.insertAdjacentHTML('afterbegin',markup)
+}
+catch (err) {
+  alert(err)
+}
 }
 const events=['hashchange', 'load'];
 events.forEach(event=>window.addEventListener(event,showRecipe))
