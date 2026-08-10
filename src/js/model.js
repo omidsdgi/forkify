@@ -25,3 +25,16 @@ export const loadRecipe=async function(id)  {
     throw err;
   }
 }
+
+export const loadSearchResults= async function(query){
+  try{
+    const data= await getJSON(`${API_URL}/?search=${query}`)
+    console.log(data);
+    return data;
+  } catch (err){
+    console.error(`${err} ✨✨✨`)
+    throw err;
+  }
+}
+
+loadSearchResults('pizza');
