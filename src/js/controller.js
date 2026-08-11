@@ -4,7 +4,7 @@ import searchView from './views/searchView';
 
 import 'core-js/stable'
 import 'regenerator-runtime/runtime'
-
+import resultView from './views/resultView';
 
 const controlRecipes=async function () {
   try {
@@ -26,10 +26,16 @@ const controlRecipes=async function () {
 
 const controlSearchResult= async function () {
   try{
+    resultView.renderSpinner();
+
+    //1)Get search query
     const query= searchView.getQuery();
     if(!query) return;
 
+    //2) Load search results
     await model.loadSearchResults(query)
+
+    //3) Render results
     console.log(model.state.search.results);
 
   } catch (error) {
