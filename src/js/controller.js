@@ -1,11 +1,15 @@
 import * as model from './model.js';
 import recipeView from './views/recipeView';
 import searchView from './views/searchView';
+import resultView from './views/resultView';
 
 import 'core-js/stable'
 import 'regenerator-runtime/runtime'
-import resultView from './views/resultView';
 
+
+if (module.hot) {
+  module.hot.accept();
+}
 const controlRecipes=async function () {
   try {
     const id = window.location.hash.slice(1);
