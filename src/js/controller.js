@@ -5,7 +5,7 @@ import resultView from './views/resultView';
 
 import 'core-js/stable'
 import 'regenerator-runtime/runtime'
-
+import paginationView from './views/paginationView';
 
 if (module.hot) {
   module.hot.accept();
@@ -43,6 +43,9 @@ const controlSearchResult= async function () {
     console.log(model.state.search.results);
     // resultView.render(model.state.search.results)
     resultView.render(model.getSearchResultsPage(1));
+
+    //4) Render initial pagination buttons
+    paginationView.render(model.state.search);
   } catch (error) {
     console.log(error)
   }
