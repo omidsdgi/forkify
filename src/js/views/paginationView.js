@@ -10,7 +10,6 @@ class PaginationView extends View{
       if(!btn) return;
 
       const goTOPage= + btn.dataset.goto;
-
         handler(goTOPage);
     });
   }
