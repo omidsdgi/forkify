@@ -15,6 +15,15 @@ class RecipeView  extends View {
     ['hashchange', 'load'].forEach(ev=>window.addEventListener(ev,handler))
   }
 
+  addHandlerUpdateServings(handler){
+  this._parentElement.addEventListener('click', function(e){
+    const btn= e.target.closest('.btn--tiny');
+    if(!btn) return;
+    console.log(btn);
+    handler()
+  });
+  }
+
   _generateMarkup(){
     return  `
     <figure class="recipe__fig">
@@ -36,8 +45,8 @@ class RecipeView  extends View {
             <svg class="recipe__info-icon">
               <use href="${icons}#icon-users"></use>
             </svg>
-            <span class="recipe__info-data recipe__info-data--people">4</span>
-            <span class="recipe__info-text">${this._data.servings}</span>
+            <span class="recipe__info-data recipe__info-data--people">${this._data.servings}</span>
+            <span class="recipe__info-text">servings</span>
 
             <div class="recipe__info-buttons">
               <button class="btn--tiny btn--increase-servings">
