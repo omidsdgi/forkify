@@ -8,7 +8,8 @@ export  const state={
     results:[],
     page:1,
     resultsPerPage:RES_PER_PAG
-  }
+  },
+  bookmark:[]
 }
 export const loadRecipe=async function(id)  {
   try {
@@ -63,9 +64,26 @@ export const getSearchResultsPage= function(page= state.search.page){
   return state.search.results.slice(start, end);
 }
 
+
+
+
 export const updateServing=function(newServings){
 state.recipe.ingredients.forEach(ing=>{
   ing.quantity= (ing.quantity * newServings) / state.recipe.servings;
 })
+
+
   state.recipe.servings=newServings;
 }
+
+export const addBookmark= function(recipe){
+  // Add bookmark
+  state.bookmark.push(recipe)
+
+  // Mark current recipe as bookmark
+  if (recipe.id === state.recipe.id) state.recipe.bookmark= true
+}
+
+
+
+
