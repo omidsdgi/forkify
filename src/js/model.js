@@ -1,6 +1,7 @@
 import { API_URL, RES_PER_PAG } from './config';
 import { getJSON } from './helpers';
 
+
 export  const state={
   recipe:{},
   search:{
@@ -9,8 +10,9 @@ export  const state={
     page:1,
     resultsPerPage:RES_PER_PAG
   },
-  bookmark:[]
+  bookmarks:[]
 }
+
 export const loadRecipe=async function(id)  {
   try {
   const data= await getJSON(`${API_URL}/${id}`)
@@ -26,6 +28,11 @@ export const loadRecipe=async function(id)  {
       cookingTime: recipe.cooking_time,
       ingredients: recipe.ingredients,
     }
+
+    if (state.bookmarks.some(bookmark => bookmark.id === id))
+      state.recipe.bookmarks = true
+    else state.recipe.bookmarks = false
+
     console.log(state.recipe);
   }catch (err){
     console.error(`${err} ✨✨✨`)
@@ -77,11 +84,11 @@ state.recipe.ingredients.forEach(ing=>{
 }
 
 export const addBookmark= function(recipe){
-  // Add bookmark
-  state.bookmark.push(recipe)
+  // Add bookmarks
+  state.bookmarks.push(recipe)
 
-  // Mark current recipe as bookmark
-  if (recipe.id === state.recipe.id) state.recipe.bookmark= true
+  // Mark current recipe as bookmarks
+  if (recipe.id === state.recipe.id) state.recipe.bookmarks= true
 }
 
 
