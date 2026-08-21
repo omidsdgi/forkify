@@ -11,16 +11,18 @@ import bookmarksView from './views/bookmarksView';
 if (module.hot) {
   module.hot.accept();
 }
+
+
 const controlRecipes=async function () {
   try {
     const id = window.location.hash.slice(1);
-    console.log(id);
 
     if (!id) return;
     recipeView.renderSpinner();
 
     //Update results view to mark selected search result
     resultView.update(model.getSearchResultsPage())
+    bookmarksView.update(model.state.bookmarks)
 
     //loading recipe
     await model.loadRecipe(id)
