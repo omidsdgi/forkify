@@ -1,4 +1,5 @@
 import View from './view';
+import icons from 'url:../../img/icons.svg'
 
 class previewView extends View{
   _parentElement='';
@@ -8,7 +9,9 @@ class previewView extends View{
 
     return `
     <li class="preview">
-            <a class="preview__link ${result.id === id ? 'preview__link--active' : ''}" href="#${result.id}">
+            <a class="preview__link ${
+                this._data.id === id ? 'preview__link--active' : ''
+              }" href="#${this._data.id}">
               <figure class="preview__fig">
                 <img src="${result.image}" alt="${result.title}" />
               </figure>
