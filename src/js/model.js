@@ -82,7 +82,7 @@ state.recipe.ingredients.forEach(ing=>{
 }
 
 const persistBookmarks= function(){
-  localStorage.setItem('bookmark', JSON.stringify(state.bookmarks));
+  localStorage.setItem('bookmarks', JSON.stringify(state.bookmarks));
   }
 
 export const addBookmark= function(recipe){
@@ -106,5 +106,9 @@ export const deleteBookmark= function(id){
   persistBookmarks()
 }
 
-
-
+const init=function(){
+  const storage= localStorage.getItem('bookmarks')
+  if (storage) state.bookmarks= JSON.parse(storage)
+}
+init()
+console.log(state.bookmarks);
