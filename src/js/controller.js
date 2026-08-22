@@ -103,3 +103,6 @@ const init=function(){
 
 }
 init()
+const clearBookmarks = function(){
+  localStorage.removeItem('bookmarks')
+}
