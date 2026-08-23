@@ -1,5 +1,5 @@
 import View from './view';
-import icons from 'url:../../img/icons.svg';
+
 
 class AddRecipeView extends View{
   _parentElement=document.querySelector('.upload');
@@ -8,6 +8,20 @@ class AddRecipeView extends View{
   _overlay= document.querySelector('.overlay');
   _btnOpen=document.querySelector('.nav__btn--add-recipe');
   _btnClose=document.querySelector('.btn--close-model');
+
+  constructor() {
+    super();
+    this._addHandlerShowWindow()
+  }
+
+  toggleWindow(){
+    this._overlay.classList.toggle('hidden');
+    this._window.classList.toggle('hidden');
+  }
+  _addHandlerShowWindow (){
+    this._btnOpen.addEventListener('click', this.toggleWindow.bind(this));
+  }
+
   _generateMarkup(){
 
   }
