@@ -7,6 +7,7 @@ import 'regenerator-runtime/runtime'
 import paginationView from './views/paginationView';
 import bookmarksView from './views/bookmarksView';
 import addReviewView from './views/addRecipeView';
+import addRecipeView from './views/addRecipeView';
 
 if (module.hot) {
   module.hot.accept();
@@ -93,11 +94,14 @@ const controlBookmarks = function(){
   bookmarksView.render(model.state.bookmarks);
 }
 
-const controlAddRecipe= function (newRecipe) {
-  console.log(newRecipe);
-
+const controlAddRecipe=async function (newRecipe) {
+try{
   // upload the new recipe data
-  model.uploadRecipe(newRecipe);
+  await model.uploadRecipe(newRecipe);
+  }catch (err) {
+  console.error(`🎇,${err}`);
+  addRecipeView.renderError(err.message);
+}
 }
 
 const init=function(){
