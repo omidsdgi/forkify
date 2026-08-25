@@ -29,9 +29,9 @@ export const sendJSON= async function(url, upload){
       headers: {
         'Content-Type': 'application/json'
       },
-      body: upload
+      body: JSON.stringify(upload)
     })
-    
+
     const res = await Promise.race([fetchPro, timeout(TIMEOUT_SEC)])
     const data = await res.json()
     if (!res.ok) throw new Error(`${data.message}:  ( ${res.url} )`);
