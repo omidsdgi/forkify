@@ -8,6 +8,7 @@ import paginationView from './views/paginationView';
 import bookmarksView from './views/bookmarksView';
 import addReviewView from './views/addRecipeView';
 import addRecipeView from './views/addRecipeView';
+import { MODAL_CLOSE_SEC } from './config';
 
 if (module.hot) {
   module.hot.accept();
@@ -102,6 +103,11 @@ try{
 
   // Render recipe
   resultView.render(model.state.recipe);
+
+  // Close form window
+  setTimeout(function(){
+    addRecipeView.toggleWindow()
+  },MODAL_CLOSE_SEC * 1000)
   }catch (err) {
   console.error(`🎇,${err}`);
   addRecipeView.renderError(err.message);
