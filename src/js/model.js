@@ -124,8 +124,8 @@ export const clearBookmarks = function(){
 
 export const uploadRecipe= async function(newRecipe){
   try{
-  const ingredients = Object.entries(newRecipe).filter(
-    entry => entry[0].startsWith('ingredient') && entry[1] !== '')
+  const ingredients = Object.entries(newRecipe)
+    .filter(entry => entry[0].startsWith('ingredient') && entry[1] !== '')
     .map( ing=>{
       const ingArr = ing[1].replaceAll(' ', '').split(',')
       if (ingArr.length !== 3)
@@ -145,7 +145,7 @@ export const uploadRecipe= async function(newRecipe){
       publisher: newRecipe.publisher,
       cooking_time: +newRecipe.cookingTime,
       servings: +newRecipe.servings,
-      ingredients:newRecipe.ingredients,
+      ingredients,
     }
 
   const data= await sendJSON(`${API_URL}?key=${KEY}`,recipe)
