@@ -106,11 +106,14 @@ try{
   // Render recipe
   recipeView.render(model.state.recipe);
 
+  // Success message
+  addRecipeView.renderMessage()
+
   //Render recipe
   recipeView.render(model.state.recipe);
 
-  // Success message
-  addRecipeView.renderMessage()
+  // Change ID in URL
+  window.history.pushState(null,'',`#${model.state.recipe.id}`);
 
   // Close form window
   setTimeout(function(){
