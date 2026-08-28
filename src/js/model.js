@@ -56,7 +56,8 @@ export const loadSearchResults= async function(query){
         id: rec.id,
         title: rec.title,
         publisher: rec.publisher,
-        image: rec.image_url
+        image: rec.image_url,
+        ...(rec.key && {key:rec.key})
       }
     });
   state.search.page = 1;
