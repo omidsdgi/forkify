@@ -130,7 +130,8 @@ const showRecipe= async function(){
         </svg>
       </a>
     </div>`
-  recipeContainer.insertAdjacentHTML('afterbegin', markup)
+    recipeContainer.innerHTML ='';
+    recipeContainer.insertAdjacentHTML('afterbegin', markup)
   }catch (error) {
    alert(error);
   }
