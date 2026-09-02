@@ -158,3 +158,4 @@ const showRecipe= async function(){
 showRecipe().catch(error => console.log(error));
 
 window.addEventListener('hashchange', showRecipe)
+window.addEventListener('load', showRecipe)
