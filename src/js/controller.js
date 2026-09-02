@@ -34,6 +34,7 @@ const showRecipe= async function(){
     const id=window.location.hash.slice(1)
     console.log(id);
 
+    if (!id) return
     // 1) Loading recipe
     renderSpinner(recipeContainer)
 
@@ -157,5 +158,5 @@ const showRecipe= async function(){
 }
 showRecipe().catch(error => console.log(error));
 
-window.addEventListener('hashchange', showRecipe)
-window.addEventListener('load', showRecipe)
+
+['hashchange','load'].forEach(ev=>window.addEventListener(ev, showRecipe));
