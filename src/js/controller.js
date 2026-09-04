@@ -20,17 +20,7 @@ const timeout= function(s){
 
 /////////////////////////////////////////////////
 
-const renderSpinner = function(parentEl){
-  const markup = `
-  <div class="spinner">
-          <svg>
-            <use href="${icons}#icon-loader"></use>
-          </svg>
-        </div> -->        
-  `
-  parentEl.innerHTML = '';
-  parentEl.insertAdjacentHTML('afterbegin', markup);
-}
+
 
 const controlRecipes= async function(){
   try {
