@@ -36,3 +36,7 @@ const controlRecipes= async function(){
 controlRecipes().catch(error => console.log(error));
 
 
+const init=function(){
+
+}
+init()
