@@ -36,4 +36,3 @@ const controlRecipes= async function(){
 controlRecipes().catch(error => console.log(error));
 
 
-['hashchange','load'].forEach(ev=>window.addEventListener(ev, controlRecipes));
