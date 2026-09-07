@@ -6,8 +6,6 @@ import 'core-js/stable'
 import 'regenerator-runtime/runtime'
 import recipeView from './views/recipeView';
 
-const recipeContainer=document.querySelector('.recipe');
-
 
 
 // https://forkify-api.jonas.io
@@ -30,13 +28,13 @@ const controlRecipes= async function(){
     // Rendering recipe
     recipeView.render(model.state.recipe);
   }catch (error) {
-   alert(error);
+    console.log(error);
   }
 }
 controlRecipes().catch(error => console.log(error));
 
 
 const init=function(){
-
+recipeView.addHandlerRender(controlRecipes);
 }
 init()
