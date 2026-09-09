@@ -21,7 +21,19 @@ export const loadRecipe= async function (id){
     ingredients: recipe.ingredients,
   }
   console.log(state.recipe);
-} catch(error){
-  throw error;
+} catch(err){
+  // Temp error handling
+    console.error(`${err} 🎇🎇🎇`)
+    throw err;
 }
+}
+
+
+export const loadSearchResults = async function(query){
+  try {
+
+  } catch (err){
+    console.error(`${err} 🎇🎇🎇`)
+    throw err;
+  }
 }
