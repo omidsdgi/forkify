@@ -5,15 +5,13 @@ import * as model from './model';
 import 'core-js/stable'
 import 'regenerator-runtime/runtime'
 import recipeView from './views/recipeView';
+import { state } from './model';
 
 
 
 // https://forkify-api.jonas.io
 
 /////////////////////////////////////////////////
-
-
-
 const controlRecipes= async function(){
   try {
     const id=window.location.hash.slice(1)
@@ -31,8 +29,18 @@ const controlRecipes= async function(){
     recipeView.renderError();
   }
 }
+
 controlRecipes().catch(error => console.log(error));
 
+const controlSearchResults= async function(){
+  try{
+    await model.loadSearchResults('pizza');
+    console.log(model.state.search.results);
+  } catch (err){
+    console.log(err);
+  }
+}
+controlSearchResults()
 
 const init=function(){
 recipeView.addHandlerRender(controlRecipes);
