@@ -1,17 +1,11 @@
 import * as model from './model';
-
-
+import recipeView from './views/recipeView';
 
 import 'core-js/stable'
 import 'regenerator-runtime/runtime'
-import recipeView from './views/recipeView';
-import { state } from './model';
+import searchView from './views/searchView';
 
 
-
-// https://forkify-api.jonas.io
-
-/////////////////////////////////////////////////
 const controlRecipes= async function(){
   try {
     const id=window.location.hash.slice(1)
@@ -30,11 +24,12 @@ const controlRecipes= async function(){
   }
 }
 
-controlRecipes().catch(error => console.log(error));
-
 const controlSearchResults= async function(){
   try{
-    await model.loadSearchResults('pizza');
+    const query= searchView.getQuery();
+    if(!query) return;
+
+    await model.loadSearchResults(query);
     console.log(model.state.search.results);
   } catch (err){
     console.log(err);
