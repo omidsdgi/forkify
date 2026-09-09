@@ -9,7 +9,6 @@ import searchView from './views/searchView';
 const controlRecipes= async function(){
   try {
     const id=window.location.hash.slice(1)
-    console.log(id);
 
     if (!id) return
     recipeView.renderSpinner()
@@ -35,9 +34,9 @@ const controlSearchResults= async function(){
     console.log(err);
   }
 }
-controlSearchResults()
 
 const init=function(){
 recipeView.addHandlerRender(controlRecipes);
+searchView.addHandlerSearch(controlSearchResults);
 }
 init()
