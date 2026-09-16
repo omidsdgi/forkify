@@ -4,6 +4,7 @@ import recipeView from './views/recipeView';
 import 'core-js/stable'
 import 'regenerator-runtime/runtime'
 import searchView from './views/searchView';
+import resultView from '../../omid-copySrc/js/views/resultView';
 
 
 const controlRecipes= async function(){
@@ -25,6 +26,7 @@ const controlRecipes= async function(){
 
 const controlSearchResults= async function(){
   try{
+    resultView.renderSpinner();
     // 1) Get search results
     const query= searchView.getQuery();
     if(!query) return;
