@@ -5,6 +5,7 @@ import 'core-js/stable'
 import 'regenerator-runtime/runtime'
 import searchView from './views/searchView';
 import resultView from '../../omid-copySrc/js/views/resultView';
+import resultsView from './views/resultsView';
 
 
 const controlRecipes= async function(){
@@ -27,6 +28,8 @@ const controlRecipes= async function(){
 const controlSearchResults= async function(){
   try{
     resultView.renderSpinner();
+    console.log(resultView);
+
     // 1) Get search results
     const query= searchView.getQuery();
     if(!query) return;
@@ -36,6 +39,7 @@ const controlSearchResults= async function(){
 
     // 3) Render results
     console.log(model.state.search.results);
+    resultsView.render(model.state.search.results);
   } catch (err){
     console.log(err);
   }
