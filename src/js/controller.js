@@ -1,13 +1,15 @@
 import * as model from './model';
 import recipeView from './views/recipeView';
+import searchView from './views/searchView';
+import resultsView from './views/resultsView';
 
 import 'core-js/stable'
 import 'regenerator-runtime/runtime'
-import searchView from './views/searchView';
-import resultView from '../../omid-copySrc/js/views/resultView';
-import resultsView from './views/resultsView';
 
 
+if (module.hot) {
+  module.hot.accept();
+}
 const controlRecipes= async function(){
   try {
     const id=window.location.hash.slice(1)
@@ -27,21 +29,22 @@ const controlRecipes= async function(){
 
 const controlSearchResults= async function(){
   try{
-    resultView.renderSpinner();
-    console.log(resultView);
-
     // 1) Get search results
     const query= searchView.getQuery();
-    if(!query) return;
+    if(!query) {
+      resultsView.renderSpinner('Please enter a search query!');
+      return
+    }
+    
+    resultsView.renderSpinner();
 
     // 2) Load search results
     await model.loadSearchResults(query);
 
     // 3) Render results
-    console.log(model.state.search.results);
     resultsView.render(model.state.search.results);
   } catch (err){
-    console.log(err);
+    resultsView.renderError();
   }
 }
 
