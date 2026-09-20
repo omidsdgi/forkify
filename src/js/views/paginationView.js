@@ -10,7 +10,14 @@ class PaginationView extends View{
     const currPage=this._data.page;
     // Page 1, and there are other pages
     if (currPage ===1 && numPages>1){
-      return `page 1, others`
+      return `
+       <button class="btn--inline pagination__btn--next">
+            <span>Page ${currPage+1}</span>
+            <svg class="search__icon">
+              <use href="${icons}#icon-arrow-right"></use>
+            </svg>
+          </button>
+      `
     }
 
     //Last page
@@ -29,7 +36,9 @@ class PaginationView extends View{
     // Page 1, and there are No other pages
       return `other page`
     }
-      return `first page`
+      return `
+     first
+      `
   }
 }
 
