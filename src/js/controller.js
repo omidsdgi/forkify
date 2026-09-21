@@ -43,7 +43,7 @@ const controlSearchResults= async function(){
     await model.loadSearchResults(query);
 
     // 3) Render results
-    resultsView.render(model.getSearchResultsPage(2));
+    resultsView.render(model.getSearchResultsPage(3));
 
     //4) Render initial pagination buttons
     paginationView.render(model.state.search);
@@ -53,7 +53,7 @@ const controlSearchResults= async function(){
 }
 
 const controlPagination= function (goToPage) {
-  console.log('Page controller');
+  console.log(goToPage);
 }
 const init=function(){
 recipeView.addHandlerRender(controlRecipes);
